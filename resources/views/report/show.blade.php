@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="font-weight-bold">Nader bericht</div>
-                <p>Wederom is een gelhaard aanleiding geweest voor een bezoek van de brandweer zoals dit ook eind vorig jaar het geval was. Ditmaal is een verkeerde brandstof gebruikt waardoor een woning blauw van de rook kwam te staan.</p>
+                <p>{{ $report->description }}</p>
 
                 <div class="spacer my-5"></div>
 

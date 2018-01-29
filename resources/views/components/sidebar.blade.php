@@ -3,6 +3,7 @@
     @if ($tip)
         <div class="p-3 mb-3 bg-light rounded">
             <p class="mb-0">
+                <strong class="d-block">Tip</strong>
                 {{ $tip->description }}
             </p>
         </div>

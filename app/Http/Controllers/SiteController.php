@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use App\Report;
 
 class SiteController extends Controller
@@ -13,11 +14,15 @@ class SiteController extends Controller
      */
     public function index()
     {
+        $articles = Article::orderBy('created_at', 'desc')
+            ->limit(2)
+            ->get();
+
         $reports = Report::orderBy('created_at', 'desc')
             ->limit(10)
             ->get();
 
-        return view('site.index', compact('reports'));
+        return view('site.index', compact('reports', 'articles'));
     }
 
     /**

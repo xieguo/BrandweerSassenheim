@@ -14,6 +14,8 @@
 Route::get('/', 'SiteController@index')->name('home');
 Route::get('home', 'SiteController@index')->name('home');
 Route::get('brandveiligheid', 'SiteController@brandveiligheid')->name('brandveiligheid');
+Route::get('artikelen', 'ArticleController@index')->name('article.index');
+Route::get('artikel/{article}', 'ArticleController@show')->name('article.show');
 Route::resource('tips', 'TipController');
 Route::get('uitrukken/{report}/edit', 'ReportController@edit')->name('report.edit');
 Route::resource('uitrukken', 'ReportController', [

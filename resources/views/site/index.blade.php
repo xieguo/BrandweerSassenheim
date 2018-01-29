@@ -1,32 +1,26 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="border-bottom">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card flex-md-row mb-4 box-shadow overflow-hidden">
-                        <a href="#" class="card-link card-body d-flex flex-column align-items-start text-dark">
-                            <h3 class="mb-2">Vlam in de pan!</h3>
-                            <p class="card-text">Tips om een vlam in de pan veilig te blussen en te voorkomen.</p>
-                            <span class="text-primary">Lees verder</span>
-                        </a>
-                        <div class="d-none d-lg-block bg-dark bg-center bg-cover" style="min-width: 200px; background-image: url(https://placehold.it/200x200);"></div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card flex-md-row mb-4 box-shadow h-md-170 overflow-hidden">
-                        <a href="#" class="card-link card-body d-flex flex-column align-items-start text-dark">
-                            <h3 class="mb-2">Vlam in de pan!</h3>
-                            <p class="card-text">Tips om een vlam in de pan veilig te blussen en te voorkomen.</p>
-                            <span class="text-primary">Lees verder</span>
-                        </a>
-                        <div class="d-none d-lg-block bg-dark bg-center bg-cover" style="min-width: 200px; background-image: url(https://placehold.it/200x200);"></div>
-                    </div>
+    @if ($articles)
+        <div class="border-bottom">
+            <div class="container">
+                <div class="row">
+                    @foreach ($articles as $article)
+                        <div class="col-md-6">
+                            <div class="card flex-md-row mb-4 box-shadow overflow-hidden">
+                                <a href="{{ $article->path }}" class="card-link card-body d-flex flex-column align-items-start text-dark">
+                                    <h3 class="mb-2">{{ $article->title }}</h3>
+                                    <p class="card-text">{{ $article->introduction }}</p>
+                                    <span class="text-primary">Lees verder</span>
+                                </a>
+                                <div class="d-none d-lg-block bg-dark bg-center bg-cover" style="min-width: 200px; background-image: url(https://placehold.it/200x200);"></div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-    </div>
+    @endif
 
     <main role="main" class="container mt-4">
         <div class="row">
