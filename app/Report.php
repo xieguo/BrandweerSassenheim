@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -28,6 +29,15 @@ class Report extends Model
      * @var array
      */
     protected $dates = ['report_at'];
+
+    public function __construct(array $attributes = [])
+    {
+        $default = [
+            'report_at' => Carbon::now(),
+        ];
+
+        parent::__construct(array_merge($default, $attributes));
+    }
 
     /**
      * Returns the title as a slug
