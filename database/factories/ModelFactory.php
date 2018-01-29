@@ -21,3 +21,22 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Report::class, function (Faker $faker) {
+    return [
+        'guid' => $faker->uuid,
+        'title' => $faker->sentence,
+        'description' => $faker->text,
+        'address' => $faker->address,
+        'city' => $faker->city,
+        'type' => $faker->randomElement(['Stormschade', 'Gebouwbrand', 'Gasontsnapping', 'Persoon te water', 'Brandmelding']),
+        'is_visible' => 1,
+        'report_at' => $faker->dateTimeThisYear,
+    ];
+});
+
+$factory->define(App\Tip::class, function (Faker $faker) {
+    return [
+        'description' => $faker->text,
+    ];
+});

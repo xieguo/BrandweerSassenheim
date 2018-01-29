@@ -11,6 +11,31 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'SiteController@index')->name('home');
+Route::get('home', 'SiteController@index')->name('home');
+Route::get('brandveiligheid', 'SiteController@brandveiligheid')->name('brandveiligheid');
+Route::resource('tips', 'TipController');
+Route::get('uitrukken/{report}/edit', 'ReportController@edit')->name('report.edit');
+Route::resource('uitrukken', 'ReportController', [
+    'except' => ['show'],
+    'names' => [
+        'index' => 'report.index',
+        'create' => 'report.create',
+        'store' => 'report.store',
+        'update' => 'report.update',
+        'delete' => 'report.delete',
+    ]
+]);
+Route::get('uitrukken/{year}', 'ReportController@index')->name('report.year');
+Route::get('uitruk/{date}/{report}/{slug}', 'ReportController@show')->name('report.show');
+Route::get('p2000', 'SiteController@p2000')->name('p2000');
+Route::get('contact', 'SiteController@contact')->name('contact');
+
+Auth::routes();
+
+/**
+ * Administration
+ */
+Route::get('admin', function() {
+    return redirect(route('login'));
 });

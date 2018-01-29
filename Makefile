@@ -10,11 +10,14 @@ provision:
 	docker-compose up -d
 	make provision-composer
 	cp .env.example .env
-	docker-compose exec bollenstreek_app php artisan key:generate
-	docker-compose exec bollenstreek_app php artisan migrate --seed
+	docker-compose exec brwssm_app php artisan key:generate
+	make provision-composer
 
 provision-composer:
-	docker-compose exec bollenstreek_app composer.phar install --no-interaction
+	docker-compose exec brwssm_app composer.phar install --no-interaction
+
+provision-migrate:
+	docker-compose exec brwssm_app php artisan migrate
 
 rebuild:
 	docker-compose build
@@ -27,3 +30,9 @@ up:
 
 down:
 	docker-compose down
+
+test:
+	docker-compose exec brwssm_app ./vendor/bin/phpunit
+
+tinker:
+	docker-compose exec brwssm_app php artisan tinker
