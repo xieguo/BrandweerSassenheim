@@ -15,10 +15,13 @@ class SiteController extends Controller
     public function index()
     {
         $articles = Article::orderBy('created_at', 'desc')
+            ->where('is_frontpage', 1)
+            ->where('is_visible', 1)
             ->limit(2)
             ->get();
 
         $reports = Report::orderBy('created_at', 'desc')
+            ->where('is_visible', 1)
             ->limit(10)
             ->get();
 

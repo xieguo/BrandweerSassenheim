@@ -10139,6 +10139,10 @@ a.text-dark:focus {
   background-color: rgba(52, 58, 64, 0.75);
 }
 
+.no-hover:hover {
+  text-decoration: none;
+}
+
 .mb-4-5 {
   margin-bottom: 2rem;
 }

@@ -14,6 +14,8 @@ class Article extends Model
         'introduction',
         'description',
         'is_visible',
+        'is_frontpage',
+        'type',
     ];
 
     /**

@@ -33,6 +33,7 @@ class ReportController extends Controller
         $years = Report::getDistinctYears();
         $reports = Report::orderBy('report_at', 'desc')
             ->whereYear('report_at', $year)
+            ->where('is_visible', 1)
             ->paginate(50);
 
         return view('report.index', compact('year', 'reports', 'years'));
@@ -119,10 +120,9 @@ class ReportController extends Controller
             'city' => $request->input('city'),
             'type' => $request->input('type'),
             'description' => $request->input('description'),
-            'is_hidden' => $request->input('is_hidden'),
+            'is_visible' => $request->input('is_hidden') ? 0 : 1,
             'report_at' => Carbon::createFromFormat('Y-m-d H:i', $request->input('date') . ' ' . $request->input('time')),
             'guid' => $report->generateGuid(),
-            'is_visible' => !$request->input('is_hidden'),
         ]);
 
         $report->save();

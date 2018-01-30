@@ -14,8 +14,8 @@
     <div class="container">
         <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-9 pt-1 header-logo d-flex">
-                <div class="flex-column pr-3">
-                    <svg width="40px" height="46px" viewBox="0 0 118 137" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <a href="#" class="d-flex line-height-1 pt-2 text-white no-hover">
+                    <svg class="flex-column" width="40px" height="46px" viewBox="0 0 118 137" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs></defs>
                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                             <g id="Brandweer_Nederland-2" transform="translate(-37.000000, -24.000000)" fill="#D6AE23">
@@ -29,13 +29,11 @@
                             </g>
                         </g>
                     </svg>
-                </div>
-                <div class="flex-column line-height-1 pt-2">
-                    <a href="#" class="text-white">
+                    <span class="flex-column d-inline-block pt-2 pl-3">
                         <strong class="d-block">Post Sassenheim</strong>
                         <small>Brandweer Hollands-Midden</small>
-                    </a>
-                </div>
+                    </span>
+                </a>
             </div>
             <div class="col-3 d-flex justify-content-end align-items-center">
                 @guest

@@ -13,6 +13,20 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::orderBy('created_at', 'desc')
+            ->where('is_visible', 1)
+            ->paginate(25);
+
+        return view('article.index', compact('articles'));
+    }
+
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function safety()
+    {
+        $articles = Article::orderBy('created_at', 'desc')
+            ->where('type', 'safety')
+            ->where('is_visible', 1)
             ->paginate(25);
 
         return view('article.index', compact('articles'));
@@ -89,7 +103,9 @@ class ArticleController extends Controller
             'title' => $request->input('title'),
             'introduction' => $request->input('introduction'),
             'description' => $request->input('description'),
-            'is_visible' => !$request->input('is_hidden'),
+            'is_visible' => $request->input('is_hidden') ? 0 : 1,
+            'is_frontpage' => $request->input('is_frontpage') ? 1 : 0,
+            'type' => $request->input('type'),
         ]);
 
         if ($request->has('image')) {

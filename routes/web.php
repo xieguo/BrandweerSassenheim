@@ -13,7 +13,7 @@
 
 Route::get('/', 'SiteController@index')->name('home');
 Route::get('home', 'SiteController@index')->name('home');
-Route::get('brandveiligheid', 'ArticleController@index')->name('brandveiligheid');
+Route::get('brandveiligheid', 'ArticleController@safety')->name('brandveiligheid');
 Route::resource('tips', 'TipController');
 Route::get('uitrukken/{report}/edit', 'ReportController@edit')->name('report.edit');
 Route::resource('uitrukken', 'ReportController', [

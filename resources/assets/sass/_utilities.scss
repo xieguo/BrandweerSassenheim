@@ -9,6 +9,10 @@
 .bg-dark-50 { background-color: rgba(52, 58, 64, 0.5); }
 .bg-dark-75 { background-color: rgba(52, 58, 64, 0.75); }
 
+.no-hover:hover {
+  text-decoration: none;
+}
+
 .mb-4-5 {
   margin-bottom: 2rem;
 }

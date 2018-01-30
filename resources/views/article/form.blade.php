@@ -10,6 +10,24 @@
 </div>
 
 <div class="form-group">
+    <label for="type">Type</label>
+    <select id="type" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type">
+        <option value="safety"{{ old('type') ?: $article->type == 'safety' ? ' selected' : '' }}>
+            Brandveiligheid
+        </option>
+        <option value="news"{{ old('type') ?: $article->type == 'news' ? ' selected' : '' }}>
+            Nieuws
+        </option>
+    </select>
+
+    @if ($errors->has('type'))
+        <div class="invalid-feedback">
+            {{ $errors->first('type') }}
+        </div>
+    @endif
+</div>
+
+<div class="form-group">
     <label for="image">Afbeelding</label>
     <input id="image" type="file" class="form-control-file{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image">
 
@@ -45,7 +63,12 @@
 <div class="form-group">
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="remember" {{ (old('is_hidden') ?: $article->is_hidden) ? 'checked' : '' }}> Verberg dit artikel
+            <input type="checkbox" name="is_frontpage" {{ (old('is_frontpage') ?: $article->is_frontpage) ? 'checked' : '' }}> Toon op de homepage
+        </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" name="is_hidden" {{ (old('is_hidden') ?: $article->is_hidden) ? 'checked' : '' }}> Verberg dit artikel
         </label>
     </div>
 </div>
