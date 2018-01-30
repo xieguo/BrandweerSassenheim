@@ -13,7 +13,7 @@
 <header class="header py-3">
     <div class="container">
         <div class="row flex-nowrap justify-content-between align-items-center">
-            <div class="col-12 col-md-7 pt-1 header-logo d-flex">
+            <div class="col-9 pt-1 header-logo d-flex">
                 <div class="flex-column pr-3">
                     <svg width="40px" height="46px" viewBox="0 0 118 137" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs></defs>
@@ -37,8 +37,24 @@
                     </a>
                 </div>
             </div>
-            <div class="col-4 d-none d-md-flex justify-content-end align-items-center">
-                <a class="btn btn-sm btn-outline-light" href="#">Abonneren</a>
+            <div class="col-3 d-flex justify-content-end align-items-center">
+                @guest
+                    <a class="btn btn-sm btn-outline-light" href="{{ route('login') }}">Inloggen</a>
+                @else
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+                            Beheren
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{ route('report.create') }}">Uitruk toevoegen</a>
+                            <a class="dropdown-item" href="{{ route('article.create') }}">Artikel toevoegen</a>
+                            <a class="dropdown-item" href="{{ route('tips.create') }}">Tip toevoegen</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Uitloggen</a>
+                            <form id="logout-form" class="d-none" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

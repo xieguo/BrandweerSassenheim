@@ -41,8 +41,6 @@
                                 </li>
                             @endif
                         </ul>
-
-                        <a href="{{ route('report.create') }}" class="btn btn-outline-success float-right">Toevoegen</a>
                     </div>
                 </div>
 
@@ -53,7 +51,7 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th class="border-top-0" scope="col">#</th>
+                        <th class="border-top-0 d-none d-md-block">#</th>
                         <th class="border-top-0" scope="col">Datum</th>
                         <th class="border-top-0" scope="col">Melding</th>
                     </tr>
@@ -61,8 +59,8 @@
                     <tbody>
                     @foreach ($reports as $report)
                         <tr>
-                            <th scope="row">{{ $report->id }}</th>
-                            <td>{{ $report->report_at->format('d M') }}</td>
+                            <th class=" d-none d-md-block">{{ $report->id }}</th>
+                            <td class="text-muted">{{ $report->report_at->format('d M') }}</td>
                             <td><a href="{{ $report->path }}">{{ $report->title }}</a></td>
                         </tr>
                     @endforeach()

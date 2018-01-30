@@ -35,6 +35,15 @@ $factory->define(App\Report::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(App\Article::class, function (Faker $faker) {
+    return [
+        'title' => $faker->sentence,
+        'introduction' => $faker->text,
+        'description' => $faker->text,
+        'is_visible' => 1,
+    ];
+});
+
 $factory->define(App\Tip::class, function (Faker $faker) {
     return [
         'description' => $faker->text,

@@ -6,6 +6,9 @@
   background-position: center;
 }
 
+.bg-dark-50 { background-color: rgba(52, 58, 64, 0.5); }
+.bg-dark-75 { background-color: rgba(52, 58, 64, 0.75); }
+
 .mb-4-5 {
   margin-bottom: 2rem;
 }
@@ -36,10 +39,12 @@
 }
 
 .h-250 { height: 250px; }
+.h-200 { height: 200px; }
 .h-150 { height: 150px; }
 .h-170 { height: 170px; }
 @media (min-width: 768px) {
   .h-md-250 { height: 250px; }
+  .h-md-200 { height: 200px; }
   .h-md-150 { height: 150px; }
   .h-md-170 { height: 170px; }
 }

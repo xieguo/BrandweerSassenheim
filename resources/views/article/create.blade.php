@@ -7,21 +7,19 @@
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('article.index') }}">Artikelen</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">{{ $article->title }}</li>
+                        <li class="breadcrumb-item active">Toevoegen</li>
                     </ol>
                 </nav>
 
-                @auth
-                    <a href="{{ route('article.edit', $article->id) }}" class="float-right btn btn-outline-success">
-                        Wijzigen
-                    </a>
-                @endauth
+                <h2 class="border-bottom pb-2">
+                    Artikel toevoegen
+                </h2>
 
-                <h3 class="pb-3 mb-4 border-bottom">
-                    {{ $article->title }}
-                </h3>
+                <form method="POST" action="{{ route('article.store') }}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
 
-                <p>{{ $article->description }}</p>
+                    @include('article.form')
+                </form>
             </div><!-- /.blog-main -->
 
             @include('components.sidebar')

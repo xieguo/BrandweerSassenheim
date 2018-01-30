@@ -12,13 +12,20 @@
                     </ol>
                 </nav>
 
-                <a href="{{ route('report.edit', $report->id) }}" class="float-right btn btn-outline-success">
-                    Wijzigen
-                </a>
+                @auth
+                    <a href="{{ route('report.edit', $report->id) }}" class="float-right btn btn-outline-success">
+                        Wijzigen
+                    </a>
+                @endauth
 
                 <h3 class="pb-3 mb-4 border-bottom">
                     {{ $report->title }}
                 </h3>
+
+                @if ($report->description)
+                    <div class="font-weight-bold">Nader bericht</div>
+                    <p>{!! nl2br(strip_tags($report->description)) !!}</p>
+                @endif
 
                 <div class="row mb-4">
                     <div class="col-md-6">
@@ -29,7 +36,7 @@
 
                         <dl class="row mb-0 py-2 bg-light">
                             <dt class="col-4">Datum</dt>
-                            <dd class="col-8 mb-0">{{ $report->report_at->format('l j F Y') }}</dd>
+                            <dd class="col-8 mb-0">{{ t($report->report_at->format('l j F Y')) }}</dd>
                         </dl>
 
                         <dl class="row mb-0 py-2">
@@ -58,9 +65,6 @@
                     </div>
                 </div>
 
-                <div class="font-weight-bold">Nader bericht</div>
-                <p>{{ $report->description }}</p>
-
                 <div class="spacer my-5"></div>
 
                 <h4 class="pb-3 mb-4 border-bottom">
@@ -75,8 +79,8 @@
                                     <a class="text-dark" href="{{ $related_report->path }}">{{ $related_report->title }}</a>
                                 </h5>
                                 <div class="mb-1 text-muted d-inline-block" data-toggle="tooltip" title="{{ $related_report->created_at->format('d-m-Y H:i') }}">{{ $related_report->created_at->diffForHumans() }}</div>
-                                <p class="card-text mb-2 d-none d-lg-block">{{ str_limit($related_report->description, 120) }}</p>
-                                <a href="#">Lees meer</a>
+                                <p class="card-text mb-2 d-none d-lg-block">{{ str_limit(strip_tags($related_report->description), 120) }}</p>
+                                <a href="{{ $related_report->path }}">Lees meer</a>
                             </div>
                         </div>
                     @endforeach

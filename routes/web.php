@@ -13,9 +13,7 @@
 
 Route::get('/', 'SiteController@index')->name('home');
 Route::get('home', 'SiteController@index')->name('home');
-Route::get('brandveiligheid', 'SiteController@brandveiligheid')->name('brandveiligheid');
-Route::get('artikelen', 'ArticleController@index')->name('article.index');
-Route::get('artikel/{article}', 'ArticleController@show')->name('article.show');
+Route::get('brandveiligheid', 'ArticleController@index')->name('brandveiligheid');
 Route::resource('tips', 'TipController');
 Route::get('uitrukken/{report}/edit', 'ReportController@edit')->name('report.edit');
 Route::resource('uitrukken', 'ReportController', [
@@ -26,6 +24,18 @@ Route::resource('uitrukken', 'ReportController', [
         'store' => 'report.store',
         'update' => 'report.update',
         'delete' => 'report.delete',
+    ]
+]);
+Route::get('artikelen/{article}/edit', 'ArticleController@edit')->name('article.edit');
+Route::get('artikelen/{article}/{slug}', 'ArticleController@show')->name('article.show');
+Route::resource('artikelen', 'ArticleController', [
+    'except' => ['show'],
+    'names' => [
+        'index' => 'article.index',
+        'create' => 'article.create',
+        'store' => 'article.store',
+        'update' => 'article.update',
+        'delete' => 'article.delete',
     ]
 ]);
 Route::get('uitrukken/{year}', 'ReportController@index')->name('report.year');
