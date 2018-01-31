@@ -3,7 +3,7 @@
 @section('content')
     <main role="main" class="container">
         <div class="row">
-            <div class="col-md-8 blog-main">
+            <ul class="col-md-8 blog-main">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('report.index') }}">Uitrukken</a></li>
@@ -64,6 +64,16 @@
                         <img class="mw-100" width="413" height="240" src="http://maps.googleapis.com/maps/api/staticmap?center={{ $report->address_encoded }}&zoom=14&size=350x240&sensor=false&markers=size:mid%7Ccolor:red%7C{{ $report->address_encoded }}">
                     </div>
                 </div>
+
+                @if ($report->files())
+                    <div class="overflow-auto">
+                        <ul class="list-inline" style="width: {{ $report->files->count() * 635 }}px;">
+                            @foreach ($report->files as $file)
+                                <li class="list-inline-item"><img src="http://cdn.brandweersassenheim.nl/large/{{ $file->file }}" width="600" style="margin-right: 20px;"></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <div class="spacer my-5"></div>
 

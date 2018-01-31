@@ -38,6 +38,13 @@ class Report extends Model
 
         parent::__construct(array_merge($default, $attributes));
     }
+    /**
+     * Get all of the report's files.
+     */
+    public function files()
+    {
+        return $this->morphMany('App\File', 'file');
+    }
 
     /**
      * Returns the title as a slug
