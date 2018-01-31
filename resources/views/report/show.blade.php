@@ -66,7 +66,7 @@
                 </div>
 
                 @if ($report->files())
-                    <div class="overflow-auto">
+                    <div class="overflow-y-scroll">
                         <ul class="list-inline" style="width: {{ $report->files->count() * 635 }}px;">
                             @foreach ($report->files as $file)
                                 <li class="list-inline-item"><img src="http://cdn.brandweersassenheim.nl/large/{{ $file->file }}" width="600" style="margin-right: 20px;"></li>
