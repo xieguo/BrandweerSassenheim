@@ -32,6 +32,7 @@ class ReportController extends Controller
 
         $years = Report::getDistinctYears();
         $reports = Report::orderBy('report_at', 'desc')
+            ->with('files')
             ->whereYear('report_at', $year)
             ->where('is_visible', 1)
             ->paginate(50);
@@ -75,7 +76,7 @@ class ReportController extends Controller
     {
         $report = $this->validateAndPersist($request);
 
-        return redirect($report->path);
+        return redirect($report->path . '/edit');
     }
 
     /**
@@ -92,9 +93,8 @@ class ReportController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update($id, Request $request)
+    public function update(Report $report, Request $request)
     {
-        $report = Report::find($id);
         $report = $this->validateAndPersist($request, $report);
 
         return redirect($report->path);

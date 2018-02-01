@@ -3,7 +3,7 @@
 @section('content')
     <main role="main" class="container">
         <div class="row">
-            <ul class="col-md-8 blog-main">
+            <div class="col-md-8 blog-main">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('report.index') }}">Uitrukken</a></li>
@@ -69,7 +69,7 @@
                     <div class="overflow-y-scroll">
                         <ul class="list-inline" style="width: {{ $report->files->count() * 635 }}px;">
                             @foreach ($report->files as $file)
-                                <li class="list-inline-item"><img src="http://cdn.brandweersassenheim.nl/large/{{ $file->file }}" width="600" style="margin-right: 20px;"></li>
+                                <li class="list-inline-item"><img src="{{ $file->path }}" width="600" style="margin-right: 20px;"></li>
                             @endforeach
                         </ul>
                     </div>
@@ -77,22 +77,14 @@
 
                 <div class="spacer my-5"></div>
 
-                <h4 class="pb-3 mb-4 border-bottom">
+                <h5 class="mb-3">
                     Meer recente uitrukken
-                </h4>
+                </h5>
 
                 @if ($related_reports)
                     @foreach ($related_reports as $related_report)
-                        <div class="card box-shadow mb-3">
-                            <div class="card-body">
-                                <h5 class="mb-0">
-                                    <a class="text-dark" href="{{ $related_report->path }}">{{ $related_report->title }}</a>
-                                </h5>
-                                <div class="mb-1 text-muted d-inline-block" data-toggle="tooltip" title="{{ $related_report->created_at->format('d-m-Y H:i') }}">{{ $related_report->created_at->diffForHumans() }}</div>
-                                <p class="card-text mb-2 d-none d-lg-block">{{ str_limit(strip_tags($related_report->description), 120) }}</p>
-                                <a href="{{ $related_report->path }}">Lees meer</a>
-                            </div>
-                        </div>
+                        @component('components.report', ['report' => $related_report])
+                        @endcomponent
                     @endforeach
                 @endif
             </div><!-- /.blog-main -->

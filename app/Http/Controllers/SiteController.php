@@ -21,8 +21,9 @@ class SiteController extends Controller
             ->get();
 
         $reports = Report::orderBy('created_at', 'desc')
+            ->with('files')
             ->where('is_visible', 1)
-            ->limit(10)
+            ->limit(15)
             ->get();
 
         return view('site.index', compact('reports', 'articles'));

@@ -51,17 +51,27 @@
                 <table class="table">
                     <thead>
                     <tr>
+                        <th class="border-top-0 d-none"></th>
                         <th class="border-top-0 d-none d-md-block">#</th>
                         <th class="border-top-0" scope="col">Datum</th>
                         <th class="border-top-0" scope="col">Melding</th>
+                        <th class="border-top-0" scope="col">&nbsp;</th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach ($reports as $report)
                         <tr>
+                            <th class=" d-none"></th>
                             <th class=" d-none d-md-block">{{ $report->id }}</th>
                             <td class="text-muted">{{ $report->report_at->format('d M') }}</td>
                             <td><a href="{{ $report->path }}">{{ $report->title }}</a></td>
+                            <td class="p-0">
+                                @if ($report->files->count())
+                                    <a href="{{ $report->path }}">
+                                        <img src="{{ $report->files[0]->path }}" alt="{{ $report->title }}" height="48">
+                                    </a>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach()
                     </tbody>

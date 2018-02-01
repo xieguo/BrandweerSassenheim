@@ -38,6 +38,7 @@ class Report extends Model
 
         parent::__construct(array_merge($default, $attributes));
     }
+
     /**
      * Get all of the report's files.
      */

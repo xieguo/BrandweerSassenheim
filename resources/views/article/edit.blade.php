@@ -6,8 +6,7 @@
             <div class="col-md-8 blog-main">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('article.index') }}">Artikelen</a></li>
-                        <li class="breadcrumb-item active">{{ $article->title }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('article.type', [strtolower($article->type)]) }}">{{ ucfirst($article->type) }}</a></li>
                     </ol>
                 </nav>
 
@@ -21,6 +20,11 @@
 
                     @include('article.form')
                 </form>
+
+                <hr>
+
+                @component('components.file_browser', ['type' => 'article', 'entity' => $article, 'errors' => $errors])
+                @endcomponent
             </div><!-- /.blog-main -->
 
             @include('components.sidebar')

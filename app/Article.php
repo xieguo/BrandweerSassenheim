@@ -35,4 +35,12 @@ class Article extends Model
     {
         return route('article.show', [$this->id, $this->slug]);
     }
+
+    /**
+     * Get all of the report's files.
+     */
+    public function files()
+    {
+        return $this->morphMany('App\File', 'file');
+    }
 }

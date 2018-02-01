@@ -11,6 +11,10 @@
                     </ol>
                 </nav>
 
+                <a href="{{ $report->path }}" class="float-right btn btn-outline-secondary">
+                    Bekijken
+                </a>
+
                 <h2 class="border-bottom pb-2">
                     Uitruk wijzigen
                 </h2>
@@ -21,6 +25,11 @@
 
                     @include('report.form')
                 </form>
+
+                <hr>
+
+                @component('components.file_browser', ['type' => 'report', 'entity' => $report, 'errors' => $errors])
+                @endcomponent
             </div><!-- /.blog-main -->
 
             @include('components.sidebar')

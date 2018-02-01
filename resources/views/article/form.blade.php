@@ -12,12 +12,11 @@
 <div class="form-group">
     <label for="type">Type</label>
     <select id="type" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type">
-        <option value="safety"{{ old('type') ?: $article->type == 'safety' ? ' selected' : '' }}>
-            Brandveiligheid
-        </option>
-        <option value="news"{{ old('type') ?: $article->type == 'news' ? ' selected' : '' }}>
-            Nieuws
-        </option>
+        @foreach (config('types') as $key => $type)
+            <option value="{{ $key }}"{{ old('type') ?: $article->type == $key ? ' selected' : '' }}>
+                {{ $key }}
+            </option>
+        @endforeach
     </select>
 
     @if ($errors->has('type'))

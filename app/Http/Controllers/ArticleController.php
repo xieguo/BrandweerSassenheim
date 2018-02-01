@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class ArticleController extends Controller
 {
@@ -13,6 +14,21 @@ class ArticleController extends Controller
     public function index()
     {
         $articles = Article::orderBy('created_at', 'desc')
+            ->where('is_visible', 1)
+            ->paginate(25);
+
+        return view('article.index', compact('articles'));
+    }
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function type(Request $request)
+    {
+        $type = Route::currentRouteName();
+
+        $articles = Article::orderBy('created_at', 'desc')
+            ->where('type', $type)
             ->where('is_visible', 1)
             ->paginate(25);
 
@@ -75,13 +91,12 @@ class ArticleController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param Article $article
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function update($id, Request $request)
+    public function update(Article $article, Request $request)
     {
-        $article = Article::find($id);
         $article = $this->validateAndPersist($request, $article);
 
         return redirect($article->path);
@@ -107,10 +122,6 @@ class ArticleController extends Controller
             'is_frontpage' => $request->input('is_frontpage') ? 1 : 0,
             'type' => $request->input('type'),
         ]);
-
-        if ($request->has('image')) {
-            $article->image = $request->file('image')->storePublicly(config('filesystems.disks.spaces.path'), ['disk' => 'spaces']);
-        }
 
         $article->save();
 
