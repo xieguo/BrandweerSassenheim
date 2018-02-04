@@ -6,7 +6,7 @@
             <div class="col-md-8 blog-main">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('report.index') }}">Uitrukken</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reports.index') }}">Uitrukken</a></li>
                         <li class="breadcrumb-item active">{{ $year }}</li>
                     </ol>
                 </nav>

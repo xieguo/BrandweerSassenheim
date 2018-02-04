@@ -16,26 +16,16 @@ Auth::routes();
 /**
  * Administration
  */
-Route::group(['auth'], function()
+Route::group(['auth', 'prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function()
 {
-    Route::get('uitrukken/{report}/edit', 'ReportController@edit')->name('report.edit');
-    Route::get('uitrukken', 'ReportController@index')->name('report.index');
-    Route::get('uitrukken/create', 'ReportController@create')->name('report.create');
-    Route::post('uitrukken', 'ReportController@store')->name('report.store');
-    Route::put('uitrukken/{report}', 'ReportController@update')->name('report.update');
-    Route::delete('uitrukken/{report}', 'ReportController@destroy')->name('report.destroy');
-
-    Route::get('artikelen/{article}/edit', 'ArticleController@edit')->name('article.edit');
-    Route::get('artikelen/create', 'ArticleController@create')->name('article.create');
-    Route::post('artikelen', 'ArticleController@store')->name('article.store');
-    Route::put('artikelen/{article}', 'ArticleController@update')->name('article.update');
-    Route::delete('artikelen/{article}', 'ArticleController@delete')->name('article.delete');
+    Route::get('dashboard', 'AdminController@dashboard')->name('dashboard');
+    Route::resource('articles', 'ArticleController');
+    Route::resource('reports', 'ReportController');
+    Route::resource('tips', 'TipController');
 
     Route::post('files', 'FileController@store')->name('file.store');
     Route::put('files/{file}', 'FileController@update')->name('file.update');
     Route::delete('files/{file}', 'FileController@destroy')->name('file.destroy');
-
-    Route::get('tips/create', 'TipController@create')->name('tips.create');
 });
 
 Route::get('/', 'SiteController@index')->name('home');
@@ -43,11 +33,12 @@ Route::get('home', 'SiteController@index')->name('home');
 Route::get('p2000', 'SiteController@p2000')->name('p2000');
 Route::get('contact', 'SiteController@contact')->name('contact');
 
-Route::get('uitrukken/{year}', 'ReportController@index')->name('report.year');
-Route::get('uitruk/{date}/{report}/{slug}', 'ReportController@show')->name('report.show');
+Route::get('uitrukken', 'ReportController@index')->name('reports.index');
+Route::get('uitrukken/{year}', 'ReportController@index')->name('reports.year');
+Route::get('uitruk/{date}/{report}/{slug}', 'ReportController@show')->name('reports.show');
 
-Route::get('artikelen/{article}/{slug}', 'ArticleController@show')->name('article.show');
-Route::get('artikelen/{type}', 'ArticleController@index')->name('article.type')->where('name', '[A-Za-z]+');
+Route::get('artikelen/{article}/{slug}', 'ArticleController@show')->name('articles.show');
+Route::get('artikelen/{type}', 'ArticleController@index')->name('articles.type')->where('name', '[A-Za-z]+');
 
 // Every article type gets its own route
 foreach (config('types') as $key => $type)

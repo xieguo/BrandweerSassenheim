@@ -23,6 +23,7 @@ class Report extends Model
         'type',
         'is_visible',
         'report_at',
+        'source',
     ];
 
     /**
@@ -80,7 +81,7 @@ class Report extends Model
      */
     public function generateGuid()
     {
-        return md5($this->title . ' ' . $this->report_at->format('Y-m-d'));
+        return md5($this->title . ' ' . $this->report_at->format('Y-m-d H:i:s'));
     }
 
     /**
@@ -90,7 +91,7 @@ class Report extends Model
      */
     public function getPathAttribute()
     {
-        return route('report.show', [$this->report_at->format('Y-m-d'), $this->id, $this->slug]);
+        return route('reports.show', [$this->report_at->format('Y-m-d'), $this->id, $this->slug]);
     }
 
     /**

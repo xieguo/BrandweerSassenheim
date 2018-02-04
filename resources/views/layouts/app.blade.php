@@ -8,7 +8,7 @@
     <title>Brandweer Sassenheim</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body{!! (@$admin) ? ' class="admin"' : '' !!}>
 
 <header class="header py-3">
     <div class="container">
@@ -39,17 +39,21 @@
                 @guest
                     <a class="btn btn-sm btn-outline-light" href="{{ route('login') }}">Inloggen</a>
                 @else
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
-                            Beheren
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{ route('report.create') }}">Uitruk toevoegen</a>
-                            <a class="dropdown-item" href="{{ route('article.create') }}">Artikel toevoegen</a>
-                            <a class="dropdown-item" href="{{ route('tips.create') }}">Tip toevoegen</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Uitloggen</a>
-                            <form id="logout-form" class="d-none" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
+                    <div class="btn-group" role="group">
+                        <a href="{{ route('admin.reports.index') }}" class="btn btn-outline-light btn-sm">Admin</a>
+
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-outline-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                &nbsp;
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="{{ route('admin.reports.create') }}">Uitruk toevoegen</a>
+                                <a class="dropdown-item" href="{{ route('admin.articles.create') }}">Artikel toevoegen</a>
+                                <a class="dropdown-item" href="{{ route('admin.tips.create') }}">Tip toevoegen</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Uitloggen</a>
+                                <form id="logout-form" class="d-none" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
+                            </div>
                         </div>
                     </div>
                 @endif
@@ -57,6 +61,27 @@
         </div>
     </div>
 </header>
+
+@if (@$admin)
+    <div class="nav-scroller py-1 bg-secondary border-bottom">
+        <div class="container">
+            <nav class="nav d-flex justify-content-between">
+                <a class="p-2 text-white{{ Request::is('admin/dashboard*') ? ' font-weight-bold' : '' }}" href="{{ route('admin.dashboard') }}">
+                    Dashboard
+                </a>
+                <a class="p-2 text-white{{ Request::is('admin/reports*') ? ' font-weight-bold' : '' }}" href="{{ route('admin.reports.index') }}">
+                    Uitrukken
+                </a>
+                <a class="p-2 text-white{{ Request::is('admin/articles*') ? ' font-weight-bold' : '' }}" href="{{ route('admin.articles.index') }}">
+                    Artikelen
+                </a>
+                <a class="p-2 text-white{{ Request::is('admin/tips*') ? ' font-weight-bold' : '' }}" href="{{ route('admin.tips.index') }}">
+                    Tips
+                </a>
+            </nav>
+        </div>
+    </div>
+@endif
 
 <div class="nav-scroller py-1 mb-4 bg-light border-bottom navbar-dark">
     <div class="container">

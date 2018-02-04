@@ -33,7 +33,7 @@ class Article extends Model
      */
     public function getPathAttribute()
     {
-        return route('article.show', [$this->id, $this->slug]);
+        return route('articles.show', [$this->id, $this->slug]);
     }
 
     /**

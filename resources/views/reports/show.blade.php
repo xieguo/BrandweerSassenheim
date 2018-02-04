@@ -6,14 +6,14 @@
             <div class="col-md-8 blog-main">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('report.index') }}">Uitrukken</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('report.year', $report->report_at->format('Y')) }}">{{ $report->report_at->format('Y') }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reports.index') }}">Uitrukken</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('reports.year', $report->report_at->format('Y')) }}">{{ $report->report_at->format('Y') }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ $report->title }}</li>
                     </ol>
                 </nav>
 
                 @auth
-                    <a href="{{ route('report.edit', $report->id) }}" class="float-right btn btn-outline-success">
+                    <a href="{{ route('admin.reports.show', $report->id) }}" class="float-right btn btn-outline-success">
                         Wijzigen
                     </a>
                 @endauth

@@ -6,12 +6,12 @@
             <div class="col-md-8 blog-main">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('article.type', [strtolower($article->type)]) }}">{{ ucfirst($article->type) }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('articles.type', [strtolower($article->type)]) }}">{{ ucfirst($article->type) }}</a></li>
                     </ol>
                 </nav>
 
                 @auth
-                    <a href="{{ route('article.edit', $article->id) }}" class="float-right btn btn-outline-success">
+                    <a href="{{ route('admin.articles.show', $article->id) }}" class="float-right btn btn-outline-success">
                         Wijzigen
                     </a>
                 @endauth

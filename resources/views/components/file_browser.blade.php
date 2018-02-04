@@ -2,7 +2,7 @@
     <div class="card mb-4">
         <div class="card-body">
             <h5 class="card-title">Afbeelding uploaden</h5>
-            <form method="POST" action="{{ route('file.store', ['type' => $type, 'id' => $entity->id]) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.file.store', ['type' => $type, 'id' => $entity->id]) }}" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="input-group mb-3">
@@ -21,13 +21,13 @@
 
     <div class="row">
         @foreach ($entity->files as $file)
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <div class="card mb-4">
                     <img class="card-img-top" src="{{ $file->path }}" alt="" width="250">
                     <div class="card-body">
                         <div class="card-link">
                             <div class="btn-group btn-block">
-                                <form method="POST" action="{{ route('file.destroy', $file->id) }}">
+                                <form method="POST" action="{{ route('admin.file.destroy', $file->id) }}">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <button type="submit" class="btn btn-danger">Verwijderen</button>
@@ -36,7 +36,7 @@
                                     <span class="sr-only">Toggle Dropdown</span>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <form method="POST" action="{{ route('file.update', [$file->id, 'type' => $type, 'id' => $entity->id]) }}">
+                                    <form method="POST" action="{{ route('admin.file.update', [$file->id, 'type' => $type, 'id' => $entity->id]) }}">
                                         {{ csrf_field() }}
                                         {{ method_field('PUT') }}
                                         <button type="submit" class="dropdown-item btn">Hoofdfoto</button>

@@ -6,7 +6,7 @@
             <div class="col-md-8 blog-main">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('article.type', [strtolower($article->type)]) }}">{{ ucfirst($article->type) }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('articles.type', [strtolower($article->type)]) }}">{{ ucfirst($article->type) }}</a></li>
                     </ol>
                 </nav>
 
@@ -14,11 +14,11 @@
                     Artikl wijzigen
                 </h2>
 
-                <form method="POST" action="{{ route('article.update', $article->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('articles.update', $article->id) }}" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
 
-                    @include('article.form')
+                    @include('articles.form')
                 </form>
 
                 <hr>
