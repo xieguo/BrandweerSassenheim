@@ -2,8 +2,9 @@
 
 @section('content')
     <main role="main" class="container">
-        <nav aria-label="breadcrumb">
+        <nav class="d-none d-md-block" aria-label="breadcrumb">
             <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.reports.index') }}">Uitrukken</a></li>
                 <li class="breadcrumb-item active">{{ $report->title }}</li>
             </ol>

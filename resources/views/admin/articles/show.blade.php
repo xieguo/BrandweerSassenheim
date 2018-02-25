@@ -4,29 +4,32 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8 blog-main">
-                <nav aria-label="breadcrumb">
+                <nav class="d-none d-md-block" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('articles.type', [strtolower($article->type)]) }}">{{ ucfirst($article->type) }}</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.articles.index') }}">Artikelen</a></li>
                     </ol>
                 </nav>
 
-                @auth
-                    <a href="{{ route('articles.edit', $article->id) }}" class="float-right btn btn-outline-success">
-                        Wijzigen
-                    </a>
-                @endauth
+                <a href="{{ $article->path }}" class="float-right btn btn-outline-secondary">
+                    Bekijken
+                </a>
 
-                <h3 class="pb-3 mb-4 border-bottom">
-                    {{ $article->title }}
-                </h3>
+                <h2 class="border-bottom pb-2">
+                    Artikel wijzigen
+                </h2>
 
-                <div class="card flex-md-row mb-4 box-shadow overflow-hidden h-md-200 bg-center bg-cover d-flex align-items-end" style="background-image: url({{ url_cdn($article->image) }})">
-                    <span class="d-block card-body text-light bg-dark-75 w-100 py-3">
-                        <p class="card-text">{{ str_limit($article->introduction, 120) }}</p>
-                    </span>
-                </div>
+                <form method="POST" action="{{ route('admin.articles.update', $article->id) }}" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
 
-                <p>{!! $article->description !!}</p>
+                    @include('admin.articles.form')
+                </form>
+
+                <hr>
+
+                @component('components.file_browser', ['type' => 'article', 'entity' => $article, 'errors' => $errors])
+                @endcomponent
             </div><!-- /.blog-main -->
 
             @include('components.sidebar')

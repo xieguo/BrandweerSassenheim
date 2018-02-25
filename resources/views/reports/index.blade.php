@@ -4,7 +4,7 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8 blog-main">
-                <nav aria-label="breadcrumb">
+                <nav class="d-none d-md-block" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('reports.index') }}">Uitrukken</a></li>
                         <li class="breadcrumb-item active">{{ $year }}</li>
@@ -13,11 +13,11 @@
 
                 <div class="float-right">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <ul class="nav nav-pills">
+                        <ul class="nav">
                             @foreach ($years as $key => $value)
                                 @if ($key < 2)
-                                    <li class="nav-item">
-                                        <a class="nav-link{{ $year == $value ? ' active' : '' }}" href="/uitrukken/{{ $value }}">
+                                    <li class="nav-item d-none d-md-inline-block">
+                                        <a class="nav-link{{ $year == $value ? ' font-weight-bold' : '' }}" href="/uitrukken/{{ $value }}">
                                             {{ $value }}
                                         </a>
                                     </li>
@@ -29,13 +29,17 @@
                                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                         Archief
                                     </a>
-                                    <div class="dropdown-menu">
+                                    <div class="dropdown-menu dropdown-menu-right">
                                         @foreach ($years as $key => $value)
-                                            @if ($key >= 2)
-                                                <a class="dropdown-item{{ $year == $value ? ' active' : '' }}" href="/uitrukken/{{ $value }}">
-                                                    {{ $value }}
-                                                </a>
-                                            @endif
+                                            <a
+                                                class="
+                                                    dropdown-item{{ $year == $value ? ' active' : '' }}
+                                                    {{ $key < 2 ? 'd-block d-md-none' : '' }}
+                                                "
+                                                href="/uitrukken/{{ $value }}"
+                                            >
+                                                {{ $value }}
+                                            </a>
                                         @endforeach
                                     </div>
                                 </li>
@@ -45,7 +49,8 @@
                 </div>
 
                 <h2 class="border-bottom pb-2">
-                    Uitrukken van {{ $year }}
+                    <span class="d-none d-md-block">Uitrukken van {{ $year }}</span>
+                    <span class="d-block d-md-none">Uitrukken</span>
                 </h2>
 
                 <table class="table">
@@ -63,7 +68,7 @@
                         <tr>
                             <th class=" d-none"></th>
                             <th class=" d-none d-md-block">{{ $report->id }}</th>
-                            <td class="text-muted">{{ $report->report_at->format('d M') }}</td>
+                            <td class="text-muted">{{ strtolower($report->report_at->format('j M')) }}</td>
                             <td><a href="{{ $report->path }}">{{ $report->title }}</a></td>
                             <td class="p-0">
                                 @if ($report->files->count())

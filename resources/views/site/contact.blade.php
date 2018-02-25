@@ -4,7 +4,7 @@
     <main role="main" class="container mt-4">
         <div class="row">
             <div class="col-md-8 blog-main">
-                <nav aria-label="breadcrumb">
+                <nav class="d-none d-md-block" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Home</a></li>
                         <li class="breadcrumb-item active">Contact</li>

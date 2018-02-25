@@ -129,11 +129,12 @@
                         </svg>
                     </div>
                     <div class="d-flex-column pl-3 pt-2 line-height-1">
-                        Brandweer Sassenheim
+                        <strong>Post Sassenheim</strong><br>
+                        Brandweer Hollands-Midden
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md">
+            <!--<div class="col-6 col-md">
                 <h5>Features</h5>
                 <ul class="list-unstyled text-small">
                     <li><a class="text-muted" href="#">Cool stuff</a></li>
@@ -170,7 +171,7 @@
                     <li><a class="text-muted" href="#">Privacy</a></li>
                     <li><a class="text-muted" href="#">Terms</a></li>
                 </ul>
-            </div>
+            </div>-->
         </div>
     </div>
 </footer>

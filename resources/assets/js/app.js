@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+require('lightgallery.js');
 
 window.Vue = require('vue');
 
@@ -14,4 +15,11 @@ window.Vue = require('vue');
  */
 $(function () {
     $('[data-toggle="tooltip"]').tooltip();
+});
+
+/**
+ * Lightgallery
+ */
+$(function () {
+    lightGallery(document.getElementById('lightgallery'), {download: false});
 });

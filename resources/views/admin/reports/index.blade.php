@@ -2,8 +2,9 @@
 
 @section('content')
     <main role="main" class="container">
-        <nav aria-label="breadcrumb">
+        <nav class="d-none d-md-block" aria-label="breadcrumb">
             <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Admin</a></li>
                 <li class="breadcrumb-item"><a href="{{ route('admin.reports.index') }}">Uitrukken</a></li>
             </ol>
         </nav>
@@ -29,7 +30,13 @@
             @foreach ($reports as $report)
                 <tr>
                     <td class="d-none d-md-table-cell text-muted">{{ $report->report_at->format('d M') }}</td>
-                    <td><a href="{{ route('admin.reports.show', $report->id) }}">{{ $report->title }}</a></td>
+                    <td>
+                        <a href="{{ route('admin.reports.show', $report->id) }}">{{ $report->title }}</a>
+
+                        @if (!$report->is_visible)
+                            <span class="badge badge-light">Verborgen</span>
+                        @endif
+                    </td>
                     <td class="d-none d-md-table-cell p-0">
                         @if ($report->files->count())
                             <a href="{{ route('admin.reports.show', $report->id) }}">

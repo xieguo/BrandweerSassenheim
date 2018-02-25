@@ -15,6 +15,6 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        View::share('tip', Tip::inRandomOrder()->first());
+        View::share('sidebar_tip', Tip::inRandomOrder()->first());
     }
 }

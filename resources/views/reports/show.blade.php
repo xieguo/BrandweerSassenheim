@@ -4,7 +4,7 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8 blog-main">
-                <nav aria-label="breadcrumb">
+                <nav class="d-none d-md-block" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('reports.index') }}">Uitrukken</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('reports.year', $report->report_at->format('Y')) }}">{{ $report->report_at->format('Y') }}</a></li>
@@ -66,12 +66,12 @@
                 </div>
 
                 @if ($report->files())
-                    <div class="overflow-y-scroll">
-                        <ul class="list-inline" style="width: {{ $report->files->count() * 635 }}px;">
-                            @foreach ($report->files as $file)
-                                <li class="list-inline-item"><img src="{{ $file->path }}" width="600" style="margin-right: 20px;"></li>
-                            @endforeach
-                        </ul>
+                    <div id="lightgallery">
+                        @foreach ($report->files as $file)
+                            <a href="{{ $file->path }}">
+                                <img src="{{ $file->path }}" width="200" class="mr-2">
+                            </a>
+                        @endforeach
                     </div>
                 @endif
 

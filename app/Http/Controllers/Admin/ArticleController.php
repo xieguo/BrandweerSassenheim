@@ -47,7 +47,7 @@ class ArticleController extends Controller
     {
         $article = $this->validateAndPersist($request);
 
-        return redirect($article->path);
+        return redirect(route('admin.articles.show', $article->id));
     }
 
     /**
@@ -68,7 +68,7 @@ class ArticleController extends Controller
     {
         $article = $this->validateAndPersist($request, $article);
 
-        return redirect($article->path);
+        return redirect(route('admin.articles.show', $article->id));
     }
 
     /**
