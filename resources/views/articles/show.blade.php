@@ -1,21 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <section class="bg-dark text-light h-250 position-relative -mt-4 mb-4">
-        <img alt="{{ $article->title }}" src="{{ url_cdn($article->image) }}" class="bg-image opacity-60">
-        <div class="container">
-            <div class="row justify-content-center text-center">
-                <div class="col-12 col-md-10 col-lg-7 mt-5">
-                    <h1 class="display-4">{{ $article->title }}</h1>
-                    <span class="lead d-none d-md-block">{{ str_limit($article->introduction, 120) }}</span>
-                </div>
-                <!--end of col-->
-            </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </section>
-
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8 blog-main">
@@ -25,13 +10,16 @@
                     </ol>
                 </nav>
 
-                @auth
-                    <a href="{{ route('admin.articles.show', $article->id) }}" class="float-right btn btn-outline-success">
-                        Wijzigen
-                    </a>
-                @endauth
-                <p>{!! $article->description !!}</p>
-            </div><!-- /.blog-main -->
+                <div href="{{ $article->path }}" class="card card-lg box-shadow">
+                    <div class="position-relative h-150">
+                        <img class="bg-image" src="{{ url_cdn($article->image) }}" alt="{{ $article->title }}">
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title mb-3 text-dark">{{ $article->title }}</h4>
+                        <p class="card-text text-muted">{!! $article->description !!}</p>
+                    </div>
+                </div>
+            </div>
 
             @include('components.sidebar')
 

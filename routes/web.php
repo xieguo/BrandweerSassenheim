@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Response;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,3 +51,6 @@ foreach (config('types') as $key => $type)
 Route::get('admin', function() {
     return redirect(route('login'));
 });
+
+// Legacy redirects
+Route::get('p2000-monitor', function () { return redirect(route('p2000'), Response::HTTP_MOVED_PERMANENTLY); });

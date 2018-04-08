@@ -4,6 +4,23 @@
     @if ($articles)
         <div class="border-bottom">
             <div class="container">
+                <ul class="row list-unstyled">
+                    @foreach ($articles as $key => $article)
+                        <li class="col-12 col-md-6 col-lg-4 mb-4">
+                            <a href="{{ $article->path }}" class="card card-lg card-link box-shadow">
+                                <span class="position-relative h-150">
+                                    <img class="bg-image" src="{{ url_cdn($article->image) }}" alt="{{ $article->title }}">
+                                </span>
+                                <span class="card-body">
+                                    <h4 class="card-title mb-3 text-dark">{{ $article->title }}</h4>
+                                    <p class="card-text text-muted">{{ str_limit($article->introduction, 120) }}</p>
+                                </span>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="container">
                 <div class="row">
                     @foreach ($articles as $key => $article)
                         @if ($key % 5 < 2)
