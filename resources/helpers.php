@@ -23,5 +23,10 @@ function t($string)
  */
 function url_cdn($filename)
 {
+    if (starts_with($filename, 'http'))
+    {
+        return $filename;
+    }
+
     return config('filesystems.disks.spaces.url') . '/' . $filename;
 }

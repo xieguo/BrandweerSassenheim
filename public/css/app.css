@@ -10038,6 +10038,10 @@ a.text-dark:focus {
   border-radius: 0 3px 3px 0;
 }
 
+.card-link + .card-link {
+  margin-left: 0 !important;
+}
+
 .flex-auto {
   -ms-flex: 0 0 auto;
   -webkit-box-flex: 0;

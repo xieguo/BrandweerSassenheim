@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    const TYPE_FIRESAFETY = 'brandveiligheid';
+    const TYPE_NEWS = 'nieuws';
+    
     /**
      * @var array
      */

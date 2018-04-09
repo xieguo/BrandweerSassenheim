@@ -7,6 +7,7 @@
                 <nav class="d-none d-md-block" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('articles.type', [strtolower($article->type)]) }}">{{ ucfirst($article->type) }}</a></li>
+                        <li class="breadcrumb-item">{{ $article->title }}</li>
                     </ol>
                 </nav>
 

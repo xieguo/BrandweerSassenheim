@@ -2,16 +2,59 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
+        <div class="feature-list feature-list-sm row">
+            <div class="col-12 col-md-6">
                 <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div>
+                            <span class="h6">Uitrukken</span>
+                        </div>
+                        <a href="{{ route('admin.reports.index') }}">Alle uitrukken ›</a>
+                    </div>
                     <div class="card-body">
-                        <span class="float-right text-success" data-toggle="tooltip" title="In vergelijking met vorig jaar deze tijd">12%</span>
-                        <strong class="display-4 d-block">12</strong>
-                        Uitrukken
+                        <ul class="list-unstyled list-spacing-sm">
+                            @foreach ($reports as $report)
+                                <li>
+                                    <i class="icon-text-document text-muted mr-1"></i>
+                                    <a href="{{ route('admin.reports.show', $report->id) }}">
+                                        @if (!$report->is_visible)
+                                            <span class="badge badge-light">Verborgen</span>
+                                        @endif
+                                        {{ $report->title }}
+                                    </a>
+                                </li>
+                            @endforeach()
+                        </ul>
                     </div>
                 </div>
+                <!--end of card-->
             </div>
+            <!--end of col-->
+
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <div>
+                            <span class="h6">Artikelen</span>
+                        </div>
+                        <a href="#">Alle artikelen ›</a>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled list-spacing-sm">
+                            @foreach ($articles as $article)
+                                <li>
+                                    <i class="icon-text-document text-muted mr-1"></i>
+                                    <a href="{{ route('admin.articles.show', $article->id) }}">
+                                        {{ $article->title }}
+                                    </a>
+                                </li>
+                            @endforeach()
+                        </ul>
+                    </div>
+                </div>
+                <!--end of card-->
+            </div>
+            <!--end of col-->
         </div>
     </div>
 @endsection

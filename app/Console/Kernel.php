@@ -26,6 +26,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('p2000:parse')
             ->everyTenMinutes();
+
+            $schedule->command('news:import', ['source' => '112bollenstreek'])
+                ->everyThirtyMinutes();
     }
 
     /**

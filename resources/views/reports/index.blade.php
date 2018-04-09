@@ -73,7 +73,7 @@
                             <td class="p-0">
                                 @if ($report->files->count())
                                     <a href="{{ $report->path }}">
-                                        <img src="{{ $report->files[0]->path }}" alt="{{ $report->title }}" height="48">
+                                        <img src="{{ $report->files[0]->path }}" alt="{{ $report->title }}" height="48" width="72">
                                     </a>
                                 @endif
                             </td>

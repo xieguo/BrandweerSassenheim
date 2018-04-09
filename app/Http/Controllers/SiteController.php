@@ -14,19 +14,27 @@ class SiteController extends Controller
      */
     public function index()
     {
+        $featured = Article::orderBy('created_at', 'desc')
+            ->where('is_frontpage', 1)
+            ->where('is_visible', 1)
+            ->where('type', Article::TYPE_FIRESAFETY)
+            ->limit(2)
+            ->get();
+
         $articles = Article::orderBy('created_at', 'desc')
             ->where('is_frontpage', 1)
             ->where('is_visible', 1)
-            ->limit(2)
+            ->where('type', Article::TYPE_NEWS)
+            ->limit(10)
             ->get();
 
         $reports = Report::orderBy('created_at', 'desc')
             ->with('files')
             ->where('is_visible', 1)
-            ->limit(15)
+            ->limit(10)
             ->get();
 
-        return view('site.index', compact('reports', 'articles'));
+        return view('site.index', compact('reports', 'articles', 'featured'));
     }
 
     /**

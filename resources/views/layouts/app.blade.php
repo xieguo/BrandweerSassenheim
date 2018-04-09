@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row flex-nowrap justify-content-between align-items-center">
             <div class="col-9 pt-1 header-logo d-flex">
-                <a href="#" class="d-flex line-height-1 pt-2 text-white no-hover">
+                <a href="/" class="d-flex line-height-1 pt-2 text-white no-hover">
                     <svg class="flex-column" width="40px" height="46px" viewBox="0 0 118 137" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                         <defs></defs>
                         <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -36,8 +36,8 @@
                 </a>
             </div>
             <div class="col-3 d-flex justify-content-end align-items-center">
-                @auth
-                    <div class="btn-group" role="group">
+                <div class="btn-group" role="group">
+                    @auth
                         @if (@$admin)
                             <a href="{{ route('home') }}" class="btn btn-outline-light btn-sm">Terug naar website</a>
                         @else
@@ -57,8 +57,10 @@
                                 <form id="logout-form" class="d-none" action="{{ route('logout') }}" method="POST">{{ csrf_field() }}</form>
                             </div>
                         </div>
-                    </div>
+                @else
+                    <a href="{{ route('login') }}" class="btn btn-outline-light btn-sm">Inloggen</a>
                 @endif
+                </div>
             </div>
         </div>
     </div>
